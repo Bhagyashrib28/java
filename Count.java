@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
-public class String1 
+public class Count
 {
     public static void main(String[] args) 
     {
