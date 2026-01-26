@@ -31,10 +31,11 @@ public class Vowel_Constant
                 }
             }
         }
+        System.out.println("Vowels = " + vowels);
+        System.out.println("Consonants = " + consonants);
       
         
     }
 }
 
     
-
