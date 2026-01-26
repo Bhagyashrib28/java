@@ -30,7 +30,5 @@ public class Count
         System.out.println("count of words is "+count.length);      
 
     }
-
-
     
 }
