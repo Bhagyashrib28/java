@@ -1,0 +1,157 @@
+# =========================================
+# DATA VISUALIZATION USING PYTHON
+# Adult Dataset and Iris Dataset
+# =========================================
+
+# Import Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# =========================================
+# LOAD DATASETS
+# =========================================
+
+adult = pd.read_csv("adult_dataset.csv")
+iris = pd.read_csv("iris.csv")
+
+# =========================================
+# 1D (LINEAR) DATA VISUALIZATION
+# Histogram
+# =========================================
+
+plt.figure(figsize=(8,5))
+plt.hist(adult['age'], bins=20)
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.title("1D Visualization - Age Distribution")
+plt.show()
+
+
+# =========================================
+# 2D (PLANAR) DATA VISUALIZATION
+# Scatter Plot
+# =========================================
+
+plt.figure(figsize=(8,5))
+plt.scatter(iris['SepalLengthCm'], iris['PetalLengthCm'])
+plt.xlabel("Sepal Length")
+plt.ylabel("Petal Length")
+plt.title("2D Visualization - Scatter Plot")
+plt.show()
+
+
+# =========================================
+# 3D (VOLUMETRIC) DATA VISUALIZATION
+# 3D Scatter Plot
+# =========================================
+
+fig = plt.figure(figsize=(8,6))
+ax = fig.add_subplot(111, projection='3d')
+
+ax.scatter(
+    iris['SepalLengthCm'],
+    iris['SepalWidthCm'],
+    iris['PetalLengthCm']
+)
+
+ax.set_xlabel("Sepal Length")
+ax.set_ylabel("Sepal Width")
+ax.set_zlabel("Petal Length")
+
+plt.title("3D Visualization - Iris Dataset")
+plt.show()
+
+
+PART B
+
+
+import pandas as pd
+import numpy as np
+
+# Load dataset
+df = pd.read_csv("AirQualityUCI.csv", sep=';')
+
+# Remove unwanted columns
+df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+
+# Remove spaces from column names
+df.columns = df.columns.str.strip()
+
+# Show column names
+print(df.columns)
+
+# Replace missing values
+df.replace(-200, np.nan, inplace=True)
+
+# Fill missing values
+df.fillna(df.mean(numeric_only=True), inplace=True)
+
+# Remove duplicates
+df.drop_duplicates(inplace=True)
+
+# Create datetime column only if Date and Time exist
+if 'Date' in df.columns and 'Time' in df.columns:
+    df['Datetime'] = pd.to_datetime(
+        df['Date'].astype(str) + ' ' + df['Time'].astype(str),
+        errors='coerce'
+    )
+    print(df[['Datetime']].head())
+else:
+    print("Date and Time columns not found")
+
+print(df.head())
+print(df.info())
+
+
+
+
+# Remove spaces from column names
+df.columns = df.columns.str.strip()
+
+# Convert all column names to lowercase
+df.columns = df.columns.str.lower()
+
+print(df.columns)
+
+
+
+print(df.columns.tolist())
+
+
+
+
+
+import pandas as pd
+import numpy as np
+
+# Load Air Quality dataset
+df = pd.read_csv("AirQualityUCI.csv")
+
+# Display column names
+print(df.columns)
+
+# Convert column names to lowercase
+df.columns = df.columns.str.strip().str.lower()
+
+# Split date and time from combined column if needed
+if 'date,time,co(gt),pt08.s1(co),nmhc(gt),wind,pt08.s2(nmhc),solor.r,pt08.s3(nox),no2(gt),pt08.s4(no2),ozone,temp,rh,ah' in df.columns:
+    
+    df = pd.read_csv("AirQualityUCI.csv", sep=',')
+
+# Create integrated datetime column
+if 'date' in df.columns and 'time' in df.columns:
+    
+    df['datetime'] = pd.to_datetime(
+        df['date'].astype(str) + ' ' + df['time'].astype(str),
+        errors='coerce'
+    )
+
+    print(df[['date', 'time', 'datetime']].head())
+
+else:
+    print("Date and Time columns not found")
+
+
+
+
