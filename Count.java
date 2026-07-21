@@ -4,7 +4,7 @@ public class Count
 {
     public static void main(String[] args) 
     {
-        //count string
+        //count stringteb
       
         Scanner sc  = new Scanner(System.in);
         System.out.println("enter the string : ");
